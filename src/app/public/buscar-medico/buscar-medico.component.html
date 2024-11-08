@@ -1,0 +1,52 @@
+<app-header></app-header>
+<div class="py-10 bg-[#F4F9F5] animate__fadeIn animate__delay-2s">
+    <h2 class="text-4xl text-center text-[#27AE60] font-bold mb-8">Buscar Médico</h2>
+  
+    <!-- Filtro de Búsqueda -->
+    <div class="mb-6 text-center">
+        <input 
+            type="text" 
+            class="px-4 py-2 border rounded-lg mr-2" 
+            placeholder="Buscar por nombre de médico" 
+            [(ngModel)]="medicoFiltro" 
+        />
+        <input 
+            type="text" 
+            class="px-4 py-2 border rounded-lg" 
+            placeholder="Buscar por especialidad" 
+            [(ngModel)]="especialidadFiltro" 
+        />
+    </div>
+  
+    <!-- Resultados de la búsqueda -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div *ngFor="let medico of getMedicosFiltrados()" class="bg-white p-6 rounded-lg shadow-lg transition-all hover:shadow-xl">
+            <div class="flex justify-center mb-4">
+                <img 
+                    class="w-24 h-24 object-cover rounded-full border-2 border-[#27AE60]" 
+                    [src]="medico.imagen" 
+                    alt="{{ medico.nombre }}" 
+                />
+            </div>
+            <h3 class="text-xl text-[#035B29] font-semibold mb-2">{{ medico.nombre }}</h3>
+            <p class="text-[#27AE60] font-medium">{{ medico.especialidad }}</p>
+            <p class="text-gray-700 mt-2">{{ medico.descripcion }}</p>
+            <p class="text-gray-600 mt-2"><strong>Horario de atención:</strong> {{ medico.horasAtencion }}</p>
+            
+            <!-- Botón de agendar cita -->
+            <div class="mt-4 text-center">
+                <a 
+                    [routerLink]="['reservas', medico.id]" 
+                    class="px-4 py-2 bg-[#27AE60] text-white rounded-lg hover:bg-[#219150] transition duration-300">
+                    Agendar cita
+                </a>
+            </div>
+        </div>
+    </div>
+  
+    <!-- Mensaje si no hay resultados -->
+    <div *ngIf="getMedicosFiltrados().length === 0" class="text-center text-xl text-gray-500 mt-8">
+        No se encontraron médicos con esos criterios.
+    </div>
+</div>
+<app-footer></app-footer>

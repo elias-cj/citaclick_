@@ -1,0 +1,38 @@
+<!-- Header -->
+<header class="bg-[#035B29] text-white fixed w-full top-0 left-0 z-50 shadow-lg">
+    <!-- Mobile Menu Button -->
+    <button class="lg:hidden p-4 text-white" (click)="toggleSidebar()">
+      <i class="fa fa-bars"></i>
+    </button>
+  
+    <!-- Logo and Navigation -->
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <!-- Logo (you can replace with your logo image) -->
+      <a href="/" class="text-2xl font-bold text-white">CitaClick</a>
+  
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex space-x-6">
+        <a href="/home" class="text-white hover:text-[#27AE60]">Inicio</a>
+        <a href="/reservas" class="text-white hover:text-[#27AE60]">Reservas</a>
+        <a href="/contacto" class="text-white hover:text-[#27AE60]">Contacto</a>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Sidebar for Mobile -->
+  <div *ngIf="isSidebarOpen" class="lg:hidden fixed top-0 left-0 bg-[#035B29] h-full w-64 z-40 shadow-md">
+    <div class="p-6">
+      <button class="text-white text-xl mb-6" (click)="toggleSidebar()">
+        <i class="fa fa-times"></i> Close
+      </button>
+      <nav class="space-y-6">
+        <a href="/home" class="text-white hover:text-[#27AE60]">Inicio</a>
+        <a href="/reservas" class="text-white hover:text-[#27AE60]">Reservas</a>
+        <a href="/contacto" class="text-white hover:text-[#27AE60]">Contacto</a>
+      </nav>
+    </div>
+  </div>
+  
+  <!-- Main content padding to prevent overlap -->
+  <div class="pt-20 lg:pt-0"></div>
+  
